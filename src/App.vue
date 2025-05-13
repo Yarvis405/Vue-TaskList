@@ -1,17 +1,32 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import NewTask from './components/NewTask.vue'
+//import RemoveTask './components/RemoveTask.vue'
+//import Completed './components/Completed.vue'
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <header>
+    <nav>
+      <ul>
+        <li><h1>TaskList</h1></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main></main>
+
+  <footer>
+    <nav>
+      <ul>
+        <li><h2>TaskList</h2></li>
+      </ul>
+
+      <ul>
+        <li><a href="https://github.com/yarvis405" target="_blank">Yarvis405</a></li>
+        <li><a href="https://github.com/demokratia481" target="_blank">demokratia481</a></li>
+      </ul>
+    </nav>
+  </footer>
 </template>
 
 <style scoped>
