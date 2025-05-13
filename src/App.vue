@@ -1,4 +1,7 @@
 <script setup lang="ts">
+//VUE 
+import { ref } from 'vue'
+//local
 import NewTask from './components/NewTask.vue'
 //import RemoveTask './components/RemoveTask.vue'
 //import Completed './components/Completed.vue'
@@ -13,7 +16,9 @@ import NewTask from './components/NewTask.vue'
     </nav>
   </header>
 
-  <main></main>
+  <main>
+    <NewTask />
+  </main>
 
   <footer>
     <nav>
