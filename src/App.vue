@@ -25,6 +25,11 @@
           {
             user: "demokratia481",
             github: "https://github.com/demokratia481"
+          },
+
+          {
+            user: "DengnisR",
+            github: "https://github.com/DengnisR"
           }
         ]
       }

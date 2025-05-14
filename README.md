@@ -16,6 +16,15 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 **Manage** -> create, removes, updates the task;
 **ShowItems** -> print items to html user; (it might start with an init function as welll)
 
+### Manage
+  - variables [tasks, index] <!--those are what i remember by the time im writting this-->
+    * [tasks] -> contain each new task created
+    * [index] -> it adds up for each task created id both the id and the task index
+  - methods [newTask, removeTask, tasksFlags]
+    * [newTask] -> create new tasks. Process [obj -> JSONStr -> push]
+    * [removeTask] -> remove a task. Process [delete]
+    * [tasksFlags] -> updates task flags such as isDone/isActive. Process [obj -> JSObj -> update -> JSONStr -> push]
+
 **Note: if possible answer this do i use the default**
 ```html
 <script setup lang="ts">
@@ -30,6 +39,9 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
     methods: {}
   }
 </script>
+
 ```
 
 *still not sure how it works. Also the export of methods and Props*
+
+[**note**] -> *figured out how to work with methods, data, and props. still not sure how to share variables or methods between components*
