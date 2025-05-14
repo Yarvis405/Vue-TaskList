@@ -1,28 +1,64 @@
-<script setup lang="ts">
-import { ref } from 'vue'
+<script lang="ts">
+  import { ref } from 'vue'
 
-defineProps<{ msg: string, tasks: array }>()
-
-const count = ref(0)
-
-/*
-  methods: {
-    newTask(): any{
-      //create task
-      return {brief: "my task", isDone: false}
+  interface TaskTemplate {
+    id: number,
+    brief: string //content
+    isDone: bool //if done than line-trought or .isDone(class)
+    isActive: bool //show or hide the task
+  }
+  
+  export default {
+    name: "Manage",
+    props: [],
+    components: {
+      //components here
     },
 
-    removeTask(): string {
-      //remove task
-      return "success"
-    }
-  },
+    data(): any{
+      return {
+        title: "My title",
+        index: 0,
+        tasks: ref<TaskTemplate[]>([]),
+      }
+    },
 
-}
-*/
+    methods: {
+
+      newTask(): any{
+        for(let key in this.tasks){
+          console.log(key, JSON.parse(this.tasks[key]))
+        }
+        console.log(`index ${this.index}`)
+        //create task
+        this.tasks.push(JSON.stringify({
+          id: this.index,
+          brief: "my new Task",
+          isDone: false,
+          isActive: true
+        }))
+
+        this.index++;
+      },
+
+      removeTask(taskID): string {
+        //remove task
+        delete tasks[taskID]
+        return "success"
+      }
+    },
+
+    computed: {
+      updateTasks(){
+        console.log(this.tasks)
+        return this.tasks
+      }
+    },
+
+  }
 </script>
 
-<template style="width: 100%;">
+<template>
   <!---->
   <nav>
     <ul>
@@ -30,7 +66,7 @@ const count = ref(0)
     </ul>
 
     <ul>
-      <li><input type="button" value="New Task"/></li>
+      <li><input type="button" @click="newTask" value="New Task"/></li>
     </ul>
   </nav>
   <!---->

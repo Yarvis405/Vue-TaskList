@@ -1,35 +1,91 @@
-<script setup lang="ts">
-//VUE 
-import { ref } from 'vue'
-//local
-import Manage from './components/Manage.vue'
-import ShowItems from './components/ShowItems.vue'
+<script lang="ts">
+  //VUE 
+  import { ref } from 'vue'
+  //local
+  import Manage from './components/Manage.vue'
+  import ShowItems from './components/ShowItems.vue'
+
+  export default {
+    name: "app",
+    components: {
+      Manage,
+      ShowItems
+    },
+
+    data() {
+      return {
+        title: "TaskList",
+        theme: false,
+        collaborators: [
+          {
+            user: "yarvis405",
+            github: "https://github.com/yarvis405"
+          },
+
+          {
+            user: "demokratia481",
+            github: "https://github.com/demokratia481"
+          }
+        ]
+      }
+    },
+
+    methods: {
+      changeTheme(){
+        this.isDark = !this.isDark
+        const sections = ['header', 'main', 'footer']
+
+        if(this.isDark){
+          console.debug("dark")
+          sections.map(section => {
+            this.$refs[section].theme = 'dark'
+          })
+          return "dark"
+        } else {
+          console.log("light")
+          sections.map(section => {
+            this.$refs[section].theme = 'dark'
+          })
+          return "light"
+        }
+      },
+    },
+  }
+
+
 </script>
 
 <template>
-  <header>
+  <header ref="header">
     <nav>
       <ul>
-        <li><h1>TaskList</h1></li>
+        <li><h1>{{ title }}</h1></li>
+      </ul>
+
+      <ul>
+        <li>
+          <input type="button" @click="changeTheme" value="theme" />
+        </li>
       </ul>
     </nav>
   </header>
 
-  <main>
+  <main ref="main">
     <section class="container">
       <ShowItems />
     </section>
   </main>
 
-  <footer>
+  <footer ref="footer">
     <nav>
       <ul>
-        <li><h2>TaskList</h2></li>
+        <li><h2>{{ title }}</h2></li>
       </ul>
 
       <ul>
-        <li><a href="https://github.com/yarvis405" target="_blank">Yarvis405</a></li>
-        <li><a href="https://github.com/demokratia481" target="_blank">demokratia481</a></li>
+        <li v-for="collaborator in collaborators" >
+          <a :bind:href="collaborator.github" target="_blank">{{collaborator.user}}</a>
+        </li>
       </ul>
     </nav>
   </footer>

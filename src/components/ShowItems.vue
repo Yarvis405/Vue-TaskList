@@ -1,14 +1,24 @@
-<script setup lang="ts">
+<script lang="ts">
   /*scripts here*/
   import Manage from './Manage.vue'
+
+  export default {
+    name: "Show Items",
+    props: [],
+    components: {
+      Manage
+    }
+
+
+  }
 </script>
 
 <template>
   <article>
     <table> <!-- v-if="task.length != 0" -->
-      <thead>
-        <Manage/>
-      </thead>
+      <tr>
+        <Manage />
+      </tr>
 
       <tr> <!-- v-for="key in Manage.task" :bind:id="key"-->
         <td class="task"><!--v-effect="if (task[key].isDone") $el.className+=" isdone"--> <!--{{ task[key].brief}}-->My task</td> <!--onclick change isDone style overline-->
