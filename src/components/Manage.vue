@@ -1,12 +1,48 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-defineProps<{ msg: string }>()
+defineProps<{ msg: string, tasks: array }>()
 
 const count = ref(0)
+
+/*
+  methods: {
+    newTask(): any{
+      //create task
+      return {brief: "my task", isDone: false}
+    },
+
+    removeTask(): string {
+      //remove task
+      return "success"
+    }
+  },
+
+}
+*/
 </script>
 
-<template>
+<template style="width: 100%;">
+  <!---->
+  <nav>
+    <ul>
+      <li><h3>Your Tasks</h3></li>
+    </ul>
+
+    <ul>
+      <li><input type="button" value="New Task"/></li>
+    </ul>
+  </nav>
+  <!---->
+</template>
+
+<style scoped>
+.read-the-docs {
+  color: #888;
+}
+</style>
+
+<!----
   <h1>{{ msg }}</h1>
 
   <div class="card">
@@ -32,10 +68,4 @@ const count = ref(0)
     >.
   </p>
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
-</template>
-
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>
+!---->

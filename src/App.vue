@@ -2,9 +2,8 @@
 //VUE 
 import { ref } from 'vue'
 //local
-import NewTask from './components/NewTask.vue'
-//import RemoveTask './components/RemoveTask.vue'
-//import Completed './components/Completed.vue'
+import Manage from './components/Manage.vue'
+import ShowItems from './components/ShowItems.vue'
 </script>
 
 <template>
@@ -17,7 +16,9 @@ import NewTask from './components/NewTask.vue'
   </header>
 
   <main>
-    <NewTask />
+    <section class="container">
+      <ShowItems />
+    </section>
   </main>
 
   <footer>
@@ -47,4 +48,27 @@ import NewTask from './components/NewTask.vue'
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
+
+main {
+  display: flex;
+}
+
+main section {
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+main section article {
+  flex: 1;
+}
+
+@media only screen and (max-width: 900px){
+  footer nav, header nav {
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+  }
+}
+
 </style>
