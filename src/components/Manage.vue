@@ -7,6 +7,8 @@
     isDone: bool //if done than line-trought or .isDone(class)
     isActive: bool //show or hide the task
   }
+
+  //=================================================================
   
   export default {
     name: "Manage",
@@ -22,6 +24,8 @@
         tasks: ref<TaskTemplate[]>([]),
       }
     },
+
+    //===============================================================
 
     methods: {
 
@@ -41,12 +45,32 @@
         this.index++;
       },
 
-      removeTask(taskID): string {
+      //---
+
+      removeTask(taskID: number): string {
         //remove task
-        delete tasks[taskID]
+        delete this.tasks[taskID]
         return "success"
+      },
+
+      //---
+
+      //isActive and isDone functions an be chaged to one function in that case flags
+      taskFlags({taskID: number, flag: string}): string{
+        
+        const data = JSON.parse(this.tasks[taskID])
+
+        data[flag] = !data[flag]
+
+        this.tasks[taskID] = JSON.stringify(data)
+
+        return `${flag} successfully updated`
       }
+
+      //note JSON api is just to show readable data in console since vue returns an object itself
     },
+
+    //===============================================================
 
     computed: {
       updateTasks(){
@@ -58,6 +82,7 @@
   }
 </script>
 
+
 <template>
   <!---->
   <nav>
@@ -67,10 +92,12 @@
 
     <ul>
       <li><input type="button" @click="newTask" value="New Task"/></li>
+      <!--<li><input type="button" @click="removeTask(0)" value="Delete"/></li>-->
     </ul>
   </nav>
   <!---->
 </template>
+
 
 <style scoped>
 .read-the-docs {

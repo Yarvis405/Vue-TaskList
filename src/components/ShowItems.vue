@@ -2,6 +2,8 @@
   /*scripts here*/
   import Manage from './Manage.vue'
 
+  //=================================================================
+
   export default {
     name: "Show Items",
     props: [],
@@ -9,9 +11,24 @@
       Manage
     }
 
+    //===============================================================
+
+    data() {
+      return {
+        //in case
+      }
+    },
+
+    //===============================================================
+
+    methods: {
+      //in case
+    },
+
 
   }
 </script>
+
 
 <template>
   <article>
@@ -27,6 +44,7 @@
     </table>
   </article>
 </template>
+
 
 <style scoped>
   /*if need custom styles*/
