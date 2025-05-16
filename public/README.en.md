@@ -29,20 +29,20 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 ## TODO LIST
 
 - [ ] User Interface **si alguien puede ayudar con eso bienbenido sea**
-  * [x] header (hecho)
-  * [x] footer (hecho)
-  * [x] content section (hecho)
+  * [x] header
+  * [x] footer
+  * [x] content section
   * [ ] TaskList window
     - [ ] thead/header
-    - [x] Tasks (hecho)
-- [x] task manager (hecho)
-  * [ ] create task ()
-    - [x] add new task (hecho)
+    - [x] Tasks
+- [x] task manager
+  * [ ] create task
+    - [x] add new task
     - [ ] get user input
-  * [x] remove tasks (hecho)
-  * [ ] update tasks (en proceso)
-    - [x] active (hecho)
-    - [x] Done (hecho)
+  * [x] remove tasks
+  * [ ] update tasks
+    - [x] active
+    - [x] Done
     - [ ] content/brief
 - [ ] show tasks
   * [ ] fetch tasks
