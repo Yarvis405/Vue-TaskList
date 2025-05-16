@@ -29,20 +29,20 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 ## TODO LIST
 
 - [ ] Crear Interfaz de Usuario **si alguien puede ayudar con eso bienbenido sea**
-  * [x] header (hecho)
-  * [x] footer (hecho)
-  * [x] section de contenidos (hecho)
+  * [x] header
+  * [x] footer
+  * [x] section de contenidos
   * [ ] ventana de tareas
     - [ ] thead/header
-    - [x] tareas (hecho)
-- [x] adminstrar tareas (hecho)
-  * [ ] crear tareas ()
-    - [x] anadir tarea (hecho)
+    - [x] tareas
+- [x] adminstrar tareas
+  * [ ] crear tareas
+    - [x] anadir tarea
     - [ ] recibir entradas del usuario
-  * [x] eliminar tareas (hecho)
-  * [ ] actualizar tareas (en proceso)
-    - [x] activo (hecho)
-    - [x] completado (hecho)
+  * [x] eliminar tareas
+  * [ ] actualizar tareas
+    - [x] activo
+    - [x] completado
     - [ ] contenido
 - [ ] mostrar tareas
   * [ ] obtener las tareas
