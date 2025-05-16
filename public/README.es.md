@@ -68,3 +68,11 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 *sigo sin estar seguro de como functiona del todo. Y tampoco tengo idea de como importar y exportar variables o methodos.*
 
 [**note**] -> *logre resolver como crear cada componente y sus partes con algo de ayuda. Pero sigo sin tener idea de como compartir, variables methods etc. entre componentes.*
+
+## metadata
+- [Name:] TaskList
+- [Started:] 2025-05-13 20:33
+- **collaborators**
+  * [demokratia481](https://github.com/demokratia481)
+  * [DengnisR](https://github.com/DengnisR)
+- [Dead_end:] 2025-05-30 00:00

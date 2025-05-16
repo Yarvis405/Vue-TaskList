@@ -68,3 +68,12 @@ Learn more about the recommended Project Setup and IDE Support in the [Vue Docs 
 *still not sure how it works. Also the export of methods and Props*
 
 [**note**] -> *figured out how to work with methods, data, and props. still not sure how to share variables or methods between components*
+
+
+## metadata
+- [Name:] TaskList
+- [Started:] 2025-05-13 20:33
+- **collaborators**
+  * [demokratia481](https://github.com/demokratia481)
+  * [DengnisR](https://github.com/DengnisR)
+- [Dead_end:] 2025-05-30 00:00
