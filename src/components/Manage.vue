@@ -1,12 +1,14 @@
 <script lang="ts">
   import { ref } from 'vue'
-
+/*
   interface TaskTemplate {
     id: number,
     brief: string //content
     isDone: bool //if done than line-trought or .isDone(class)
     isActive: bool //show or hide the task
   }
+
+*/
 
   //=================================================================
   
@@ -28,7 +30,7 @@
     //===============================================================
 
     methods: {
-
+/*
       newTask(): any{
         for(let key in this.tasks){
           console.log(key, JSON.parse(this.tasks[key]))
@@ -65,7 +67,7 @@
         this.tasks[taskID] = JSON.stringify(data)
 
         return `${flag} successfully updated`
-      }
+      }*/
 
       //note JSON api is just to show readable data in console since vue returns an object itself
     },
