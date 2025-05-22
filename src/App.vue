@@ -1,21 +1,23 @@
 <script lang="ts">
   //VUE 
   import { ref } from 'vue'
+  import { mapStores, mapState} from 'pinia'
   //local
-  import Manage from './components/Manage.vue'
+  //import Manage from './components/Manage.vue'
   import ShowItems from './components/ShowItems.vue'
+  import { useManageStore } from './stores/manage.ts'
 
   export default {
     name: "app",
     components: {
-      Manage,
+      //Manage,
       ShowItems
     },
 
     data() {
       return {
-        title: "TaskList",
-        theme: false,
+        local_title: "TaskList",
+        local_theme: false,
         collaborators: [
           {
             user: "yarvis405",
@@ -35,8 +37,15 @@
       }
     },
 
+    computed: {
+      ...mapStores(useManageStore),
+      ...mapState(useManageStore, ['title', 'index', 'tasks'])
+    },
+
     methods: {
       changeTheme(){
+        console.log(useManageStore)
+        
         this.isDark = !this.isDark
         const sections = ['header', 'main', 'footer']
 
@@ -116,7 +125,8 @@ main {
 
 main section {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center
 }
 

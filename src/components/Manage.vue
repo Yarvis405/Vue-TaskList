@@ -1,5 +1,17 @@
 <script lang="ts">
   import { ref } from 'vue'
+  import { mapStores, mapState } from 'pinia'
+
+  //custom
+  import { useManageStore } from '@/stores/manage.ts'
+
+/*
+  if(useManageStore){
+   const manageStore = useManageStore()
+  } else {
+    console.log("something went wrong")
+  }*/
+
 /*
   interface TaskTemplate {
     id: number,
@@ -16,20 +28,24 @@
     name: "Manage",
     props: [],
     components: {
-      //components here
+      //components
     },
 
     data(): any{
       return {
-        title: "My title",
-        index: 0,
-        tasks: ref<TaskTemplate[]>([]),
+        local_title: "My title",
+        local_index: 0,
+        local_tasks: ref<TaskTemplate[]>([]),
       }
     },
 
     //===============================================================
 
     methods: {
+
+      test(){
+        console.log(useManageStore)
+      },
 /*
       newTask(): any{
         for(let key in this.tasks){
@@ -74,12 +90,11 @@
 
     //===============================================================
 
-    computed: {
-      updateTasks(){
-        console.log(this.tasks)
-        return this.tasks
-      }
-    },
+
+    mounted(){
+      window.store = useManageStore();
+      window.tasks = this.tasks
+    }
 
   }
 </script>
@@ -87,16 +102,19 @@
 
 <template>
   <!---->
+  <td>
   <nav>
     <ul>
-      <li><h3>Your Tasks</h3></li>
+      <li><h3 @load="test">Your Tasks</h3></li>
     </ul>
 
     <ul>
-      <li><input type="button" @click="newTask" value="New Task"/></li>
-      <!--<li><input type="button" @click="removeTask(0)" value="Delete"/></li>-->
+      <!--<li><input type="button" @click="manageStore.removeTask(0)" value="Delete"/></li>-->
     </ul>
   </nav>
+  </td>
+
+  <!--<td><input type="button" @click="manageStore.newTask" value="Add"/></td>-->
   <!---->
 </template>
 

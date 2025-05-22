@@ -21,9 +21,10 @@ interface Flags {
 export const useManageStore = defineStore("manage", {
 
   state: () => ({
-    title: <string>"My title",
+    title: <string>"TaskList",
     index: <number>0,
-    tasks: <string[]>[], //first define array type <type[]> then define array [] --> <string[]>[]
+    tasks: <any[]>[], //first define array type <type[]> then define array [] --> <string[]>[]
+    dump: <string>""
   }),
 
   //===============================================================
@@ -35,39 +36,56 @@ export const useManageStore = defineStore("manage", {
   //===============================================================
 
   actions: {
-    newTask(): any {
-      for (let key in this.tasks) {
-        console.log(key, JSON.parse(this.tasks[key]))
-      }
+    newTask(taskContent: string): any {
       console.log(`index ${this.index}`)
 
       const data: TaskTemplate = {
         id: this.index,
-        brief: "my new Task",
+        brief: taskContent || "my new Task",
         isDone: false,
         isActive: true
       }
 
-      const jsonObj = JSON.stringify(data)
+      //const jsonObj = JSON.stringify(data)
 
       //create task
-      this.tasks.push(jsonObj)
+      this.tasks[this.index] = data
 
       this.index++;
+
+      //debug
+      for (let key in this.tasks) {
+        console.log(key, this.tasks[key])
+      }
     },
 
     //---
 
-    removeTask(taskID: number): string {
+    removeTask(taskID: number): any {
       //remove task
-      delete this.tasks[taskID]
+
+      if (taskID) {
+        //delete this.tasks[taskID]
+        this.tasks[taskID] = '';
+      } else if (taskID == -1) {
+        this.tasks = []
+        return this.tasks;
+      } else {
+        return "something went wrong"
+      }
+
+
+      for (let key in this.tasks) {
+        console.log(key, this.tasks[key])
+      }
+
       return "success"
     },
 
     //---
 
-    updateTask(taskID: number) {
-      console.log(taskID)
+    dataDump(): string {
+      return JSON.stringify(this.tasks)
     },
 
     //---
@@ -75,11 +93,13 @@ export const useManageStore = defineStore("manage", {
     //isActive and isDone functions an be chaged to one function in that case flags
     taskFlags(props: Flags): string {
 
-      const data = JSON.parse(this.tasks[props.taskID])
+      console.log(props.taskID)
+
+      const data: any = this.tasks[props.taskID]
 
       data[props.flag] = !data[props.flag]
 
-      this.tasks[props.taskID] = JSON.stringify(data)
+      //this.tasks[props.taskID] = JSON.stringify(data)
 
       return `${props.flag} successfully updated`
     }

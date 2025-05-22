@@ -1,6 +1,10 @@
 <script lang="ts">
   /*scripts here*/
-  import Manage from './Manage.vue'
+  //import Manage from './Manage.vue'
+  import { mapStores, mapState } from 'pinia'
+
+  //custom
+  import { useManageStore } from '@/stores/manage.ts'
 
   //=================================================================
 
@@ -8,22 +12,46 @@
     name: "Show Items",
     props: [],
     components: {
-      Manage
     },
 
     //===============================================================
 
     data() {
       return {
-        //in case
+        temp: <string> "",
+        latest_task: <string> "",
+        dump: <string> ""
       }
     },
 
     //===============================================================
 
     methods: {
-      //in case
+      newTask(temp){
+        this.latest_task = ""
+
+        if((this.temp !== "" || !temp) && this.temp !== "dump"){
+          useManageStore().newTask(temp)
+          this.temp = "";
+        } else if(this.temp === "dump") {
+          this.latest_task = this.temp
+          this.dump = useManageStore().dataDump()
+          this.temp = ""
+        }
+      }
     },
+
+    computed: {
+      ...mapStores(useManageStore),
+      ...mapState(useManageStore, ['title', 'index', 'tasks']) 
+    },
+
+    mounted() {
+     for(key in this.tasks){
+      console.log(tasks)
+      this.localTasks[key] = this.tasks[key];
+     }
+    }
 
 
   }
@@ -33,15 +61,34 @@
 <template>
   <article>
     <table> <!-- v-if="task.length != 0" -->
-      <tr>
-        <Manage />
+      <thead class="task">
+        <th style="background: none; border: none"><h2>{{ title }}</h2></th>
+        <!--<Manage />-->
+      </thead>
+
+      <tbody>
+      <tr class="hero">
+        <td><input type="text" maxlength="27" ref="taskIn" v-model="temp" placeholder="add new task" /></td>
+        <td><input type="button" role="button" class="primary" @click="newTask(temp)" value="Add"/></td>
       </tr>
 
-      <tr> <!-- v-for="key in Manage.task" :bind:id="key"-->
-        <td class="task"><!--v-effect="if (task[key].isDone") $el.className+=" isdone"--> <!--{{ task[key].brief}}-->My task</td> <!--onclick change isDone style overline-->
-        <td><!--{{ task[key].isDOne}}--><input type="button" value="remove" /></td>
+      <tr v-for="key in tasks" :key="key" v-show="key.isActive && latest_task !== 'dump'">
+        <td class="task" @click="manageStore.taskFlags({flag: 'isDone', taskID: key.id})" :class="{isDone: key.isDone}" >
+          <span>{{ key.brief }}</span>
+        </td> <!--onclick change isDone style overline-->
+        <!--<label @click=""><h1>{{localTasks}}</h1></label>-->
+        <td><input type="button" @click="manageStore.taskFlags({flag: 'isActive', taskID: key.id})" value="remove" /></td>
       </tr>
+      </tbody>
     </table>
+  </article>
+
+  <article v-show="latest_task === 'dump'">
+    <h3>History</h3>
+
+    <div>
+      {{ dump }}
+    </div>
   </article>
 </template>
 
@@ -59,5 +106,26 @@
 
   .isDone {
     text-decoration: line-through;
+  }
+
+  .hero, .hero * {
+    outline: none;
+    background: none
+  }
+
+  .hero input[type="text"] {
+    border: none;
+    font-size: 1.2rem;
+    border-bottom: solid .1rem white;
+    transition: .3s
+  }
+
+  .hero input[type="text"]:hover {
+    border-bottom: solid .12rem white;
+  }
+
+  .hero input[type="text"]:focus {
+    box-shadow: none;
+    outline: none;
   }
 </style>
