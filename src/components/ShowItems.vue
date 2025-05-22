@@ -18,6 +18,7 @@
 
     data() {
       return {
+        uAgent: navigator.userAgent,
         temp: <string> "",
         latest_task: <string> "",
         dump: <string> ""
@@ -36,6 +37,7 @@
         } else if(this.temp === "dump") {
           this.latest_task = this.temp
           this.dump = useManageStore().dataDump()
+          alert("dumps are not allowed but ...!")
           this.temp = ""
         }
       }
@@ -72,7 +74,7 @@
         <td><input type="button" role="button" class="primary" @click="newTask(temp)" value="Add"/></td>
       </tr>
 
-      <tr v-for="key in tasks" :key="key" v-show="key.isActive && latest_task !== 'dump'">
+      <tr v-for="key in tasks" :key="key" v-show="key.isActive" :class="{isDone: key.isDone}">
         <td class="task" @click="manageStore.taskFlags({flag: 'isDone', taskID: key.id})" :class="{isDone: key.isDone}" >
           <span>{{ key.brief }}</span>
         </td> <!--onclick change isDone style overline-->
@@ -83,11 +85,14 @@
     </table>
   </article>
 
-  <article v-show="latest_task === 'dump'">
+  <article v-show="latest_task === 'dump' && !uAgent.includes('Mobile' || 'IOS' || 'Android' )" >
     <h3>History</h3>
 
     <div>
-      {{ dump }}
+      {{dump
+      .replace(/({)/g, "\n{")
+      .replace(/(\[)/g, "")
+      .replace(/]/g, "")}}
     </div>
   </article>
 </template>
@@ -104,8 +109,18 @@
     background: #cc0000cc;
   }
 
-  .isDone {
+  .isDone{
     text-decoration: line-through;
+    filter: opacity(60%);
+  }
+
+  .task {
+    cursor: pointer;
+    transition: .3s;
+  }
+
+  .task:hover {
+    filter: opacity(80%);
   }
 
   .hero, .hero * {

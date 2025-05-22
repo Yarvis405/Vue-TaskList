@@ -20,7 +20,8 @@
   font-family: 'Courier New', cursive;
   font-size: 1.2rem;
   letter-spacing: .2rem;
-  max-width: 100%
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 a {
@@ -36,8 +37,10 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
+  /*min-width: 320px*/
   min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr;
 }
 
 h1 {
@@ -83,10 +86,17 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
     color: #747bff;
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media only screen and (max-width: 900px){
+  body {
+    max-width: 100%
   }
 }

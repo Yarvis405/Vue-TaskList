@@ -140,6 +140,10 @@ main section article {
     justify-content: space-around;
 
   }
+
+  section, div {
+    width: 100%;
+  }
 }
 
 </style>
